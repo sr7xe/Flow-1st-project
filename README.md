@@ -1,32 +1,46 @@
-# MyCoding Smart Contract Guide
+# MyCoding Contract
 
-## Introduction
-Welcome to the MyCoding smart contract documentation. This contract, implemented in the Cadence programming language and tailored for the Flow Playground, facilitates the storage and retrieval of information related to programming languages linked to specific user accounts on the blockchain.
+## Overview
 
-## Contract Structure
-The MyCoding smart contract establishes a clear and efficient structure for monitoring programming language preferences. Users have the ability to input their language details, and the contract offers functionality to seamlessly retrieve this information.
+The `MyCoding` contract is a simple smart contract written in Move language that allows users to add and retrieve information about weapons associated with their accounts. Each weapon is represented by a `weapon` struct, containing details such as the name, primary weapon, secondary weapon, and the associated account address.
 
-## Essential Components
-### 1. Language Information
-The contract defines a structured entity known as "language," encompassing essential fields such as the language name, proficiency in a primary language, proficiency in a secondary language, and the associated account address.
+## Structure
 
-### 2. Adding Languages
-Users can augment language information through the `addlanguage` function. This function allows users to input pertinent details, including the language name, proficiencies, and the respective account address.
+The contract consists of the following components:
 
-### 3. Retrieving Languages
-The contract provides a script that enables users to retrieve language information based on a specified account address. This feature enhances the contract's utility by allowing users to access relevant language data effortlessly.
+- **`mycoding` Module:**
+  - `weapon` Struct: Represents a weapon with attributes like `name`, `primaryweapon`, `secondaryweapon`, and `account`.
+  - `weapons` Variable: A public variable that maps account addresses to their corresponding weapons.
 
-## How to Use
-### Adding Language Information
-To input language details:
+- **Transaction:**
+  - `addweapon`: A transaction that allows users to add a new weapon by providing details like `name`, `primaryweapon`, `secondaryweapon`, and `account`.
 
-1. Utilize the `addlanguage` function in a transaction.
-2. Provide the language name, proficiencies, and the corresponding account address.
+- **Main Function:**
+  - `main`: A function to retrieve information about a specific account's weapon.
 
-### Retrieving Language Information
-To obtain language details:
+## Usage
 
-1. Use the provided script tailored for retrieving language information.
-2. Specify the account address to retrieve the associated language information.
+1. **Initializing the Contract:**
+   - The contract initializes with an empty `weapons` mapping.
 
-Feel free to explore the MyCoding smart contract's capabilities and enhance your blockchain experience with streamlined language preference tracking.
+2. **Adding a Weapon:**
+   - Use the `addweapon` transaction to add a new weapon, providing details like `name`, `primaryweapon`, `secondaryweapon`, and `account`.
+
+3. **Retrieving Weapon Information:**
+   - Use the `main` function to retrieve information about a specific account's weapon.
+
+## Example
+
+```move
+import 0x05.MyCoding;
+
+// Add a new weapon
+MyCoding.addweapon("Weapon1", "Gun", "Knife", 0x1);
+
+// Retrieve information about the weapon for account 0x1
+let weaponInfo: MyCoding.weapon = MyCoding.main(0x1);
+```
+
+## Dependencies
+
+- The contract assumes the availability of the `mycoding` module, which is imported from address `0x05`.
