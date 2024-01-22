@@ -29,17 +29,6 @@ The contract consists of the following components:
 3. **Retrieving Weapon Information:**
    - Use the `main` function to retrieve information about a specific account's weapon.
 
-## Example
-
-```move
-import 0x05.MyCoding;
-
-// Add a new weapon
-MyCoding.addweapon("Weapon1", "Gun", "Knife", 0x1);
-
-// Retrieve information about the weapon for account 0x1
-let weaponInfo: MyCoding.weapon = MyCoding.main(0x1);
-```
 
 ## Dependencies
 
